@@ -116,12 +116,39 @@
   </div>
 </template>
 
-<script>
-export default {
 
-}
+<script>
+// 引入jquery模块
+import $ from 'jquery';
+
+export default {
+    name:"app",
+
+    mounted: function () {
+        console.log('执行啦');
+        console.log(document.body);
+        $("#menu2 li a").wrapInner( '<span class="out"></span>' );
+        $("#menu2 li a").each(function() {
+            $( '<span class="over">' +  $(this).text() + '</span>' ).appendTo( this );
+        });
+
+        $("#menu2 li a").hover(function() {
+            $(".out",	this).stop().animate({'top':	'48px'},	300); // move down - hide
+            $(".over",	this).stop().animate({'top':	'0px'},		300); // move down - show
+
+        }, function() {
+            $(".out",	this).stop().animate({'top':	'0px'},		300); // move up - show
+            $(".over",	this).stop().animate({'top':	'-48px'},	300); // move up - hide
+        });
+     
+    },   
+};
+
+// jq的入口函数
+
 </script>
 
-<style>
-
+<style scoped>
+  @import url('./assets/statics/lib/hoverNav/css/style.css');
 </style>
+
