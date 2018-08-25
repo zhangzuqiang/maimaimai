@@ -125,8 +125,6 @@ export default {
     name:"app",
 
     mounted: function () {
-        console.log('执行啦');
-        console.log(document.body);
         $("#menu2 li a").wrapInner( '<span class="out"></span>' );
         $("#menu2 li a").each(function() {
             $( '<span class="over">' +  $(this).text() + '</span>' ).appendTo( this );

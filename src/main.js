@@ -11,7 +11,13 @@ Vue.use(VueRouter)
 // 注册路由规则
 const router = new VueRouter({
   routes :[
-    { path: '/index', component: index },
+    {
+      path:'/',redirect:'index'
+    },
+    { 
+      path: '/index',
+      component: index
+    },
   ]
 })
 
