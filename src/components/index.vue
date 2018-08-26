@@ -40,31 +40,11 @@
                     </div>
                     <!--幻灯片-->
                     <div class="left-705">
-                        <div class="banner-img">
-                            <div id="focus-box" class="focus-box">
-                                <ul class="slides">
-                                    <li class="" style="width: 100%;height:100%; float: left; margin-right: -100%; position: relative; opacity: 0; display: block; z-index: 1;">
-                                        <a href="/goods.html">
-                                            <img style="width: 100%;height:100%;" src="http://39.108.135.214:8899/imgs/SJ4EgwosX0wTqvyAvhtFGT1w.jpg" draggable="false">
-                                        </a>
-                                    </li>
-                                    <li style="width: 100%;height:100%; float: left; margin-right: -100%; position: relative; opacity: 1; display: block; z-index: 2;" class="flex-active-slide">
-                                        <a href="/goods.html">
-                                            <img style="width: 100%;height:100%;" src="http://39.108.135.214:8899/upload/201504/20/thumb_201504200314272543.jpg" draggable="false">
-                                        </a>
-                                    </li>
-                                </ul>
-                                <ol class="flex-control-nav flex-control-paging">
-                                    <li>
-                                        <a class="">1</a>
-                                    </li>
-                                    <li>
-                                        <a class="flex-active">2</a>
-                                    </li>
-                                </ol>
-                            </div>
-
-                        </div>
+                        <el-carousel :interval="5000" arrow="always" height="341px" indicator-position="">
+                            <el-carousel-item v-for="(item, index) in sliderlist" :key="item.id">
+                            <img :src="item.img_url" alt="">
+                            </el-carousel-item>
+                        </el-carousel>
                     </div>
                     <!--/幻灯片-->
                     <div class="left-220">
@@ -468,45 +448,54 @@
 
 <script>
 // 导入模块
-import axios from 'axios';
+import axios from "axios";
 // 引入moment 模块
-import moment from 'moment';
+import moment from "moment";
 // 接口调用
 // http://47.106.148.205:8899/site/goods/gettopdata/goods
 
 export default {
-    // 数据
-    data:function(){
-        return {
-            catelist:[],
-            sliderlist:[],
-            toplist:[]
-        }
-    },
-    // 过滤器
-      filters: {
+  // 数据
+  data: function() {
+    return {
+      catelist: [],
+      sliderlist: [],
+      toplist: []
+    };
+  },
+  // 过滤器
+  filters: {
     // 默认的切割方式 不够通用
     cutTime(value) {
-    //  return value.slice(0,10);
-        return moment(value).format("YYYY年MM月DD日");
+      //  return value.slice(0,10);
+      return moment(value).format("YYYY年MM月DD日");
     }
   },
-    // 即将显示时调用
-    beforeMount() {
-        axios.get('http://47.106.148.205:8899/site/goods/gettopdata/goods')
-        .then((response)=>{
-            // 保存数据
-            this.catelist = response.data.message.catelist;
-            this.sliderlist = response.data.message.sliderlist;
-            this.toplist = response.data.message.toplist;
-        })
-        .catch((error)=>{
-            // console.log(error);
-        })
-    },
-}
+  // 即将显示时调用
+  beforeMount() {
+    axios
+      .get("http://47.106.148.205:8899/site/goods/gettopdata/goods")
+      .then(response => {
+        // 保存数据
+        this.catelist = response.data.message.catelist;
+        this.sliderlist = response.data.message.sliderlist;
+        this.toplist = response.data.message.toplist;
+      })
+      .catch(error => {
+        // console.log(error);
+      });
+  },
+  // 显示时调用
+  mounted() {}
+};
 </script>
 
 <style scoped>
+
+.el-carousel img{
+    display: block;
+    width:100%;
+    height:100%;
+}
 
 </style>
