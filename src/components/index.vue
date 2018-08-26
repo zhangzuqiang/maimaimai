@@ -499,22 +499,11 @@ export default {
             this.catelist = response.data.message.catelist;
             this.sliderlist = response.data.message.sliderlist;
             this.toplist = response.data.message.toplist;
-            console.log(this)
         })
         .catch((error)=>{
             // console.log(error);
         })
     },
-    // 显示出来调用
-    mounted:function() {
-        axios.get('http://47.106.148.205:8899/site/goods/gettopdata/goods')
-        .then((response)=>{
-            console.log(response);
-        })
-        .catch((error)=>{
-            console.log(error);
-        })
-    }, 
 }
 </script>
 
