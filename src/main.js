@@ -9,10 +9,19 @@ import index from './components/index.vue'
 import ElementUI from 'element-ui';
 // 导入ui框架css
 import 'element-ui/lib/theme-chalk/index.css';
+// 导入懒加载插件
+import VueLazyload from 'vue-lazyload'
+
 // 使用路由中间件
 Vue.use(VueRouter)
 // 使用ui中间件
 Vue.use(ElementUI);
+//  使用懒加载中间件
+Vue.use(VueLazyload,{
+  // 图片当做资源来引入
+  loading:require ('./assets/statics/img/01.gif'),
+})
+
 
 // 注册路由规则
 const router = new VueRouter({

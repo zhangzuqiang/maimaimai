@@ -40,11 +40,13 @@
                     </div>
                     <!--幻灯片-->
                     <div class="left-705">
-                        <el-carousel :interval="5000" arrow="always" height="341px" indicator-position="">
-                            <el-carousel-item v-for="(item, index) in sliderlist" :key="item.id">
-                            <img :src="item.img_url" alt="">
-                            </el-carousel-item>
-                        </el-carousel>
+                        <div class="banner-img">
+                            <el-carousel :interval="5000" arrow="always" height="341px">
+                                <el-carousel-item v-for="(item, index) in sliderlist" :key="item.id">
+                                <img :src="item.img_url" alt="">
+                                </el-carousel-item>
+                            </el-carousel>
+                        </div>
                     </div>
                     <!--/幻灯片-->
                     <div class="left-220">
@@ -80,7 +82,7 @@
                         <li v-for="(itemSon, i) in item.datas" :key="itemSon.artID">
                             <a href="#/site/goodsinfo/87" class="">
                                 <div class="img-box">
-                                    <img :src="itemSon.img_url">
+                                    <img v-lazy="itemSon.img_url">
                                 </div>
                                 <div class="info">
                                     <h3>{{itemSon.artTitle}}</h3>
@@ -174,6 +176,9 @@ export default {
     display: block;
     width:100%;
     height:100%;
+}
+.banner-img {
+    margin-left:8px;
 }
 
 </style>
