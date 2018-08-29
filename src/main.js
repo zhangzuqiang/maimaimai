@@ -5,12 +5,20 @@ import App from './App.vue'
 import VueRouter from 'vue-router'
 // 引入index组件
 import index from './components/index.vue'
+import goodsInfo from './components/goodsInfo.vue'
 // 导入ui框架
 import ElementUI from 'element-ui';
 // 导入ui框架css
 import 'element-ui/lib/theme-chalk/index.css';
 // 导入懒加载插件
 import VueLazyload from 'vue-lazyload'
+
+// 导入axios模块 目的是让所有组件都可以使用
+import axios from "axios";
+
+// 挂载到vue的原型上->vue实例化出来的对象 公用  vue-resource this.$http
+Vue.prototype.axios = axios;
+axios.defaults.baseURL = 'http://47.106.148.205:8899';
 
 // 使用路由中间件
 Vue.use(VueRouter)
@@ -33,6 +41,10 @@ const router = new VueRouter({
       path: '/index',
       component: index
     },
+    {
+      path:'/goodsInfo/:id',
+      component:goodsInfo
+    }
   ]
 })
 

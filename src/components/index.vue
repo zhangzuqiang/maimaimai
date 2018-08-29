@@ -80,7 +80,7 @@
                 <div class="wrap-box">
                     <ul class="img-list">
                         <li v-for="(itemSon, i) in item.datas" :key="itemSon.artID">
-                            <a href="#/site/goodsinfo/87" class="">
+                            <router-link :to="`/goodsInfo/`+itemSon.artID">
                                 <div class="img-box">
                                     <img v-lazy="itemSon.img_url">
                                 </div>
@@ -95,7 +95,7 @@
                                         </span>
                                     </p>
                                 </div>
-                            </a>
+                            </router-link>
                         </li>
                     </ul>
                 </div>
@@ -105,10 +105,10 @@
 </template>
 
 <script>
-// 导入模块
-import axios from "axios";
+
 // 引入moment 模块
 import moment from "moment";
+
 // 接口调用
 // http://47.106.148.205:8899/site/goods/gettopdata/goods
 
@@ -134,7 +134,7 @@ export default {
   beforeMount() {
     //   console.log('即将要显示');
     //   获取顶部数据
-    axios.get("http://47.106.148.205:8899/site/goods/gettopdata/goods")
+    this.axios.get(`/site/goods/gettopdata/goods`)
       .then(response => {
         // 保存数据
         this.catelist = response.data.message.catelist;
@@ -146,7 +146,7 @@ export default {
       });
 
     // 获取底部的商品列表数据
-    axios.get('http://47.106.148.205:8899/site/goods/getgoodsgroup')
+    this.axios.get(`/site/goods/getgoodsgroup`)
         .then((response)=>{
             // console.log(response);
             this.goodList = response.data.message;
