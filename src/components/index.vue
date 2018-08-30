@@ -106,9 +106,6 @@
 
 <script>
 
-// 引入moment 模块
-import moment from "moment";
-
 // 接口调用
 // http://47.106.148.205:8899/site/goods/gettopdata/goods
 
@@ -122,14 +119,7 @@ export default {
       goodList:[]
     };
   },
-  // 过滤器
-  filters: {
-    // 默认的切割方式 不够通用
-    cutTime(value) {
-      //  return value.slice(0,10);
-      return moment(value).format("YYYY年MM月DD日");
-    }
-  },
+
   // 即将显示时调用
   beforeMount() {
     //   console.log('即将要显示');

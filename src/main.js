@@ -8,13 +8,18 @@ import index from './components/index.vue'
 import goodsInfo from './components/goodsInfo.vue'
 // 导入ui框架
 import ElementUI from 'element-ui';
-// 导入ui框架css
+// 导入element-ui框架css
 import 'element-ui/lib/theme-chalk/index.css';
 // 导入懒加载插件
 import VueLazyload from 'vue-lazyload'
+// 引入css
+import './assets/statics/site/css/style.css'
+// 引入模块 moment
+import moment from "moment";
 
 // 导入axios模块 目的是让所有组件都可以使用
 import axios from "axios";
+
 
 // 挂载到vue的原型上->vue实例化出来的对象 公用  vue-resource this.$http
 Vue.prototype.axios = axios;
@@ -48,8 +53,12 @@ const router = new VueRouter({
   ]
 })
 
-// 引入css
-import './assets/statics/site/css/style.css'
+// 注册全局过滤器
+Vue.filter('cutTime', function (value) {
+  return moment(value).format("YYYY年MM月DD日");
+})
+
+
 
 Vue.config.productionTip = false
 
